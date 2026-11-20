@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-50: #eef2ff;
+  --color-brand-100: #dfe6ff;
+  --color-brand-500: #2a4fd6;
+  --color-brand-600: #1f3fbf;
+  --color-brand-700: #17309a;
+  --color-ink-900: #0f1a33;
+  --color-ink-800: #17213a;
+  --color-ink-600: #4b5570;
+  --color-ink-500: #6b7590;
+  --color-ink-300: #b7bfd1;
+  --color-line: #e3e7ef;
+  --color-canvas: #eef0f3;
+  --color-nav: #0f1a33;
+  --color-nav-line: #22304f;
+  --color-nav-muted: #8e9bbd;
+  --color-nav-text: #c9d2e8;
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Manrope", "IBM Plex Sans", ui-sans-serif, sans-serif;
+}
+
+html { font-family: var(--font-sans); }
+body { @apply bg-canvas text-ink-800 antialiased; }
+h1, h2, h3, .font-display { font-family: var(--font-display); }
+.tabular-nums { font-variant-numeric: tabular-nums; }
+@media print { body { background: white; } }
