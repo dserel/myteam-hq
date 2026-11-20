@@ -80,7 +80,7 @@ export default function Licenses() {
           <div className="ml-auto flex items-center gap-2 rounded-md bg-brand-50 px-3 py-1.5 text-sm">
             <span>{sel.size} {t('common.selected')}</span>
             {canApprove && <Button size="sm" loading={busy} onClick={() => bulk('approve')}>{t('licenses.actions.bulkApprove')}</Button>}
-            {canIssue && <Button size="sm" loading={busy} onClick={() => bulk('issue')}>{t('licenses.actions.bulkIssue')}</Button>}
+            {canIssue && <Button size="sm" variant="official" loading={busy} onClick={() => bulk('issue')}>{t('licenses.actions.bulkIssue')}</Button>}
             {canRenew && <Button size="sm" loading={busy} onClick={() => setRenewOpen(true)}>{t('licenses.actions.bulkRenew')}</Button>}
             <Button size="sm" variant="ghost" onClick={() => setSel(new Set())}>{t('common.cancel')}</Button>
           </div>

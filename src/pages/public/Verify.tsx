@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { pub } from '@/api'
-import { Spinner } from '@/components/ui'
+import { Spinner, PoweredBy } from '@/components/ui'
 import { fmtDate } from '@/lib/format'
 
 /** Public license verification — shows the minimum: number, name, club, sport, status, validity. */
@@ -14,8 +14,8 @@ export default function Verify() {
   const L = (r.data as Array<{ license_no: string; full_name: string; club_name: string; sport_name_el: string; sport_name_en: string; issuer_name: string; status: string; valid_from: string; valid_to: string; photo_path: string | null; season_name: string }> | null)?.[0]
   const tone = L?.status === 'valid' ? 'bg-emerald-600' : 'bg-red-600'
   return (
-    <div className="flex min-h-screen items-center justify-center bg-slate-100 p-4">
-      <div className="w-full max-w-sm overflow-hidden rounded-xl bg-white shadow">
+    <div className="flex min-h-screen items-center justify-center bg-canvas p-4">
+      <div className="w-full max-w-sm overflow-hidden rounded-2xl bg-white shadow">
         <div className={`px-5 py-4 text-white ${L ? tone : 'bg-slate-500'}`}>
           <div className="text-xs uppercase tracking-wide opacity-80">{t('public.verifyTitle')}</div>
           <div className="text-2xl font-bold">{L ? t(`public.${L.status}`) : '—'}</div>
@@ -36,7 +36,7 @@ export default function Verify() {
             </>
           )}
         </div>
-        <div className="border-t border-slate-100 px-5 py-2 text-center text-[10px] text-slate-400">{t('public.poweredBy')}</div>
+        <div className="border-t border-line px-5 py-2.5 text-center text-[11px]"><PoweredBy /></div>
       </div>
     </div>
   )

@@ -102,7 +102,7 @@ export default function TransferDetail() {
             <div className="flex flex-wrap gap-2">
               {editable && <Button loading={busy} data-action="submit" onClick={() => act('submitted')}>{t('transfers.actions.submitted')}</Button>}
               {isStaffRole && x.status === 'submitted' && <Button variant="outline" loading={busy} data-action="review" onClick={() => act('under_review')}>{t('transfers.actions.under_review')}</Button>}
-              {isStaffRole && ['submitted', 'under_review'].includes(x.status) && <Button loading={busy} data-action="approve" onClick={() => act('approved', t('transfers.approvedNote'))}>{t('transfers.actions.approved')}</Button>}
+              {isStaffRole && ['submitted', 'under_review'].includes(x.status) && <Button variant="official" loading={busy} data-action="approve" onClick={() => act('approved', t('transfers.approvedNote'))}>{t('transfers.actions.approved')}</Button>}
               {isStaffRole && ['submitted', 'under_review'].includes(x.status) && <Button variant="danger" onClick={() => setReject(true)}>{t('transfers.actions.rejected')}</Button>}
               {editable && <Button variant="ghost" onClick={() => act('cancelled')}>{t('transfers.actions.cancelled')}</Button>}
               {x.status === 'completed' && <span className="text-sm text-emerald-700" data-completed>{t('transfers.completedNote', { no: x.license_no ?? '', club: x.to_club_name })}</span>}

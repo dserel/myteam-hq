@@ -47,12 +47,12 @@ export default function ShareImage() {
           {mode === 'round' && <select className="rounded border px-2 py-1 text-sm" value={rn} onChange={e => setRound(Number(e.target.value))}>{rounds.map(r => <option key={r} value={r}>{r}η αγωνιστική</option>)}</select>}
           <Button size="sm" onClick={download}>Λήψη PNG</Button>
         </div>
-        <svg ref={svgRef} xmlns="http://www.w3.org/2000/svg" viewBox={`0 0 ${W} ${H}`} className="w-full rounded-lg shadow" style={{ fontFamily: 'Inter, Arial, sans-serif' }}>
-          <rect width={W} height={H} fill="#0f172a" />
-          <rect x={0} y={0} width={W} height={200} fill="#1d3a9c" />
-          <text x={60} y={90} fill="#c7d2fe" fontSize={28} fontWeight={600}>{esc(C.org_name)}</text>
+        <svg ref={svgRef} xmlns="http://www.w3.org/2000/svg" viewBox={`0 0 ${W} ${H}`} className="w-full rounded-lg shadow" style={{ fontFamily: 'Poppins, Arial, sans-serif' }}>
+          <rect width={W} height={H} fill="#131429" />
+          <rect x={0} y={0} width={W} height={200} fill="#1e2040" />
+          <text x={60} y={90} fill="#04e0b5" fontSize={28} fontWeight={600}>{esc(C.org_name)}</text>
           <text x={60} y={150} fill="#fff" fontSize={44} fontWeight={700}>{esc(C.name)}</text>
-          <text x={W - 60} y={150} fill="#c7d2fe" fontSize={28} textAnchor="end">{mode === 'standings' ? 'ΒΑΘΜΟΛΟΓΙΑ' : `${rn}η ΑΓΩΝΙΣΤΙΚΗ`}</text>
+          <text x={W - 60} y={150} fill="#04e0b5" fontSize={28} textAnchor="end">{mode === 'standings' ? 'ΒΑΘΜΟΛΟΓΙΑ' : `${rn}η ΑΓΩΝΙΣΤΙΚΗ`}</text>
           {mode === 'standings' ? (
             <g>
               {['#', 'ΟΜΑΔΑ', 'ΑΓ', 'Ν', 'Η', 'ΔΙΑΦ', 'ΒΑΘ'].map((h, i) => <text key={h} x={[70, 130, 720, 800, 880, 960, 1030][i]} y={260} fill="#94a3b8" fontSize={22} fontWeight={600} textAnchor={i >= 2 ? 'end' : 'start'}>{h}</text>)}
@@ -60,8 +60,8 @@ export default function ShareImage() {
                 const y = 320 + i * 60; const d = r.score_for - r.score_against
                 return (
                   <g key={r.rank}>
-                    {i % 2 === 0 && <rect x={50} y={y - 38} width={W - 100} height={56} fill="#1e293b" rx={8} />}
-                    <text x={70} y={y} fill={i < 1 ? '#fbbf24' : '#94a3b8'} fontSize={26} fontWeight={700}>{r.rank}</text>
+                    {i % 2 === 0 && <rect x={50} y={y - 38} width={W - 100} height={56} fill="#2c2e4d" rx={8} />}
+                    <text x={70} y={y} fill={i < 1 ? '#f4b63f' : '#94a3b8'} fontSize={26} fontWeight={700}>{r.rank}</text>
                     <text x={130} y={y} fill="#fff" fontSize={28} fontWeight={600}>{esc((r.display_name ?? '').slice(0, 30))}</text>
                     <text x={720} y={y} fill="#e2e8f0" fontSize={26} textAnchor="end">{r.played}</text>
                     <text x={800} y={y} fill="#e2e8f0" fontSize={26} textAnchor="end">{r.won}</text>
@@ -77,9 +77,9 @@ export default function ShareImage() {
                 const y = 300 + i * 120; const res = m.home_score !== null && m.away_score !== null
                 return (
                   <g key={m.id}>
-                    <rect x={50} y={y - 60} width={W - 100} height={100} fill="#1e293b" rx={12} />
+                    <rect x={50} y={y - 60} width={W - 100} height={100} fill="#2c2e4d" rx={12} />
                     <text x={W / 2 - 70} y={y} fill="#fff" fontSize={30} fontWeight={600} textAnchor="end">{esc((m.home_name ?? '').slice(0, 24))}</text>
-                    <text x={W / 2} y={y + 2} fill={res ? '#fbbf24' : '#64748b'} fontSize={38} fontWeight={800} textAnchor="middle">{res ? `${m.home_score} - ${m.away_score}` : '–'}</text>
+                    <text x={W / 2} y={y + 2} fill={res ? '#f4b63f' : '#64748b'} fontSize={38} fontWeight={800} textAnchor="middle">{res ? `${m.home_score} - ${m.away_score}` : '–'}</text>
                     <text x={W / 2 + 70} y={y} fill="#fff" fontSize={30} fontWeight={600}>{esc((m.away_name ?? '').slice(0, 24))}</text>
                     <text x={W / 2} y={y + 32} fill="#94a3b8" fontSize={18} textAnchor="middle">{m.venue_name ?? ''}{m.status === 'postponed' ? ' · ΑΝΑΒΟΛΗ' : m.status.startsWith('forfeit') ? ' · ΜΗΔΕΝΙΣΜΟΣ' : ''}</text>
                   </g>)

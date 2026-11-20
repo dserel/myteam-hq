@@ -45,11 +45,11 @@ export default function AppShell() {
     <div className="flex min-h-screen">
       <aside className={cn('fixed inset-y-0 left-0 z-40 w-60 transform bg-nav text-nav-text transition-transform lg:static lg:translate-x-0', open ? 'translate-x-0' : '-translate-x-full')}>
         <div className="border-b border-nav-line px-5 py-5">
-          <div className="font-display text-[15px] font-extrabold text-white">{t('app.name')}</div>
-          <div className="mt-1.5 truncate text-xs text-nav-muted" title={orgLabel}>{orgLabel}</div>
-          {role && <div className="mt-2 inline-block rounded-full bg-[#1e2c4d] px-2 py-0.5 text-[11px] font-semibold text-[#dbe4ff]">{t(`roles.${role}`)}</div>}
+          <img src="/brand/myteam-hq-on-dark.svg" alt={t('app.name')} className="h-[26px] w-auto" />
+          <div className="mt-4 truncate text-[13px] font-semibold text-white" title={orgLabel}>{orgLabel}</div>
+          {role && <div className="mt-2 inline-block rounded-full bg-hq-navy-3 px-2 py-0.5 text-[11px] font-semibold text-nav-text">{t(`roles.${role}`)}</div>}
           {a.memberships.length > 1 && (
-            <select className="mt-2 w-full rounded border border-nav-line bg-[#16223f] px-2 py-1 text-xs text-nav-text" value={a.current?.id ?? ''} onChange={e => { a.setCurrent(e.target.value); nav('/') }} title={t('nav.switchOrg')}>
+            <select className="mt-2 w-full rounded border border-nav-line bg-hq-navy-2 px-2 py-1 text-xs text-nav-text" value={a.current?.id ?? ''} onChange={e => { a.setCurrent(e.target.value); nav('/') }} title={t('nav.switchOrg')}>
               {a.memberships.map(m => <option key={m.id} value={m.id}>{m.org.short_name ?? m.org.name}{m.club ? ' · ' + m.club.name : ''} — {t(`roles.${m.role}`)}</option>)}
             </select>
           )}
@@ -57,12 +57,12 @@ export default function AppShell() {
         <nav className="flex flex-col gap-0.5 p-2">
           {items.filter(i => i.show).map(i => (
             <NavLink key={i.to} to={i.to} end={i.to === '/' || i.to === '/finance'} onClick={() => setOpen(false)}
-              className={({ isActive }) => cn('flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm', isActive ? 'bg-brand-600 font-semibold text-white' : 'text-nav-text hover:bg-[#16223f] hover:text-white')}>
-              <i.icon size={16} /> <span className="flex-1">{i.label}</span>{i.to === '/licenses' && pending > 0 && <span className="rounded-full bg-amber-500 px-1.5 text-[11px] font-bold text-white">{pending}</span>}
+              className={({ isActive }) => cn('flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm', isActive ? 'bg-hq-mint font-semibold text-hq-navy' : 'text-nav-text hover:bg-hq-navy-2 hover:text-white')}>
+              <i.icon size={16} /> <span className="flex-1">{i.label}</span>{i.to === '/licenses' && pending > 0 && <span className="rounded-full bg-hq-gold px-1.5 text-[11px] font-bold text-hq-navy">{pending}</span>}
             </NavLink>
           ))}
           {a.current?.org.slug && (
-            <a href={`/f/${a.current.org.slug}`} target="_blank" rel="noreferrer" className="mt-2 flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm text-nav-text hover:bg-[#16223f] hover:text-white"><Globe size={16} /> {t('nav.publicPage')}</a>
+            <a href={`/f/${a.current.org.slug}`} target="_blank" rel="noreferrer" className="mt-2 flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm text-nav-text hover:bg-hq-navy-2 hover:text-white"><Globe size={16} /> {t('nav.publicPage')}</a>
           )}
         </nav>
         <div className="absolute bottom-0 left-0 right-0 border-t border-nav-line p-3 text-xs">
@@ -80,8 +80,8 @@ export default function AppShell() {
       {open && <div className="fixed inset-0 z-30 bg-slate-900/30 lg:hidden" onClick={() => setOpen(false)} />}
       <div className="flex min-w-0 flex-1 flex-col">
         <header className="flex items-center gap-3 bg-nav px-4 py-2.5 text-white lg:hidden">
-          <button onClick={() => setOpen(true)} className="rounded p-1 hover:bg-[#16223f]"><Menu size={20} /></button>
-          <span className="font-display text-sm font-extrabold">{t('app.name')}</span>
+          <button onClick={() => setOpen(true)} className="rounded p-1 hover:bg-hq-navy-2" aria-label="Menu"><Menu size={20} /></button>
+          <img src="/brand/myteam-hq-on-dark.svg" alt={t('app.name')} className="h-[22px] w-auto" />
         </header>
         <main className="flex-1 p-4 sm:p-7 lg:px-8"><Outlet /></main>
       </div>

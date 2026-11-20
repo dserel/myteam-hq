@@ -1,28 +1,52 @@
 @import "tailwindcss";
 
+/* myTeam HQ — tokens from the myTeam HQ design system
+   (https://claude.ai/artifact/GKwdVMaWTszMh7NkbiHjwF).
+   navy + mint from the official myTeam logo, gold = the HQ badge. */
 @theme {
-  --color-brand-50: #eef2ff;
-  --color-brand-100: #dfe6ff;
-  --color-brand-500: #2a4fd6;
-  --color-brand-600: #1f3fbf;
-  --color-brand-700: #17309a;
-  --color-ink-900: #0f1a33;
-  --color-ink-800: #17213a;
-  --color-ink-600: #4b5570;
-  --color-ink-500: #6b7590;
-  --color-ink-300: #b7bfd1;
-  --color-line: #e3e7ef;
-  --color-canvas: #eef0f3;
-  --color-nav: #0f1a33;
-  --color-nav-line: #22304f;
-  --color-nav-muted: #8e9bbd;
-  --color-nav-text: #c9d2e8;
-  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Manrope", "IBM Plex Sans", ui-sans-serif, sans-serif;
+  /* identity */
+  --color-hq-navy: #131429;
+  --color-hq-navy-2: #1e2040;   /* hover / raised surface on navy */
+  --color-hq-navy-3: #2c2e4d;   /* lines on navy */
+  --color-hq-mint: #04e0b5;     /* fill only, never text on white */
+  --color-hq-mint-tint: #ddf9f2;
+  --color-hq-gold: #f4b63f;     /* HQ badge, "official" actions; text on it = navy */
+  --color-hq-gold-hover: #e8a62a;
+
+  /* "brand" = accent scale used across pages (links, focus, active tabs).
+     Teal derived from the mint so text passes 4.5:1 on white. */
+  --color-brand-50: #e6f8f3;
+  --color-brand-100: #c4efe4;
+  --color-brand-500: #00a383;
+  --color-brand-600: #00806a;
+  --color-brand-700: #00664f;
+
+  /* neutrals */
+  --color-ink-900: #131429;
+  --color-ink-800: #1f2140;
+  --color-ink-600: #4a4d66;
+  --color-ink-500: #5b5e78;
+  --color-ink-300: #b9bccf;
+  --color-line: #e3e5ee;
+  --color-canvas: #f6f7fb;
+
+  /* sidebar */
+  --color-nav: #131429;
+  --color-nav-line: #2c2e4d;
+  --color-nav-muted: #a6a9c4;
+  --color-nav-text: #d5d7e8;
+
+  /* status: info (submitted, waiting) */
+  --color-info-bg: #e8ebff;
+  --color-info-ink: #3442a8;
+
+  --font-sans: "Poppins", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Poppins", ui-sans-serif, system-ui, sans-serif;
 }
 
 html { font-family: var(--font-sans); }
 body { @apply bg-canvas text-ink-800 antialiased; }
 h1, h2, h3, .font-display { font-family: var(--font-display); }
 .tabular-nums { font-variant-numeric: tabular-nums; }
+:focus-visible { outline: 2px solid var(--color-brand-600); outline-offset: 2px; }
 @media print { body { background: white; } }

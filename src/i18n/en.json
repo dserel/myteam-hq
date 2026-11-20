@@ -1,7 +1,7 @@
 {
   "app": {
-    "name": "Federation Platform",
-    "tagline": "Registry · Licenses · Finance · Competitions"
+    "name": "myTeam HQ",
+    "tagline": "Your whole sport, in one HQ."
   },
   "nav": {
     "dashboard": "Overview",
@@ -109,7 +109,10 @@
     "demoHint": "Pick a role to enter the demo environment",
     "devTitle": "Demo sign-in (local environment)",
     "devHint": "Pick a role to enter — no password",
-    "invalid": "Invalid credentials"
+    "invalid": "Invalid credentials",
+    "bullet1": "Club and athlete registry, per discipline",
+    "bullet2": "Digital licences with QR, paperless transfers",
+    "bullet3": "Competitions, results and club finances"
   },
   "dashboard": {
     "title": "Overview",
@@ -563,7 +566,7 @@
     "schedule": "Schedule",
     "results": "Results",
     "standings": "Standings",
-    "poweredBy": "Federation Platform",
+    "poweredBy": "Powered by myTeam HQ",
     "updated": "Updated",
     "noPublic": "No public competitions",
     "bracket": "Bracket"

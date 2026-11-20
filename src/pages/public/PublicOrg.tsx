@@ -2,15 +2,14 @@ import { useQuery } from '@tanstack/react-query'
 import { Link, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { pub } from '@/api'
-import { Spinner, Empty, Badge, statusTone } from '@/components/ui'
+import { Spinner, Empty, Badge, statusTone, PoweredBy } from '@/components/ui'
 
 export function PublicShell({ title, subtitle, children }: { title: React.ReactNode; subtitle?: React.ReactNode; children: React.ReactNode }) {
-  const { t } = useTranslation()
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-canvas">
       <header className="bg-nav text-white"><div className="mx-auto max-w-5xl px-4 py-6"><h1 className="font-display text-2xl font-extrabold tracking-tight">{title}</h1>{subtitle && <p className="mt-1 text-sm text-nav-text [&_a]:text-white">{subtitle}</p>}</div></header>
       <main className="mx-auto max-w-5xl px-4 py-6">{children}</main>
-      <footer className="mx-auto max-w-5xl px-4 py-6 text-center text-xs text-slate-400">{t('public.poweredBy')}</footer>
+      <footer className="mx-auto max-w-5xl px-4 py-6 text-center text-xs"><PoweredBy /></footer>
     </div>
   )
 }

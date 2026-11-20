@@ -131,7 +131,7 @@ export default function LicenseDetail() {
               {isHandlerStaff && l.status === 'submitted' && <Button variant="outline" loading={busy} onClick={() => act('start_review')}>{t('licenses.actions.start_review')}</Button>}
               {isHandlerStaff && ['submitted', 'under_review'].includes(l.status) && <Button loading={busy} onClick={() => act('approve')}>{t('licenses.actions.approve')}</Button>}
               {isHandlerStaff && ['submitted', 'under_review', 'approved'].includes(l.status) && <Button variant="danger" onClick={() => setReject(true)}>{t('licenses.actions.reject')}</Button>}
-              {isIssuerStaff && l.status === 'approved' && <Button loading={busy} onClick={() => act('issue')}>{t('licenses.actions.issue')}</Button>}
+              {isIssuerStaff && l.status === 'approved' && <Button variant="official" loading={busy} onClick={() => act('issue')}>{t('licenses.actions.issue')}</Button>}
               {isIssuerStaff && a.isAdmin && l.status === 'issued' && <Button variant="danger" onClick={() => { const n = prompt(t('licenses.actions.revoke')); if (n) act('revoke', n) }}>{t('licenses.actions.revoke')}</Button>}
               {!editable && !isHandlerStaff && !isIssuerStaff && <span className="text-sm text-slate-500">{t('common.readOnly')}</span>}
             </div>

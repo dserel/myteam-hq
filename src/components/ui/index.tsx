@@ -5,19 +5,21 @@ import { useTranslation } from 'react-i18next'
 
 export function cn(...a: (string | false | null | undefined)[]) { return clsx(a) }
 
-type Variant = 'primary' | 'secondary' | 'ghost' | 'danger' | 'outline'
+type Variant = 'primary' | 'secondary' | 'ghost' | 'danger' | 'outline' | 'official'
 export function Button({ variant = 'primary', size = 'md', className, loading, children, ...rest }:
   ButtonHTMLAttributes<HTMLButtonElement> & { variant?: Variant; size?: 'sm' | 'md'; loading?: boolean }) {
   const v: Record<Variant, string> = {
-    primary: 'bg-brand-600 text-white hover:bg-brand-700 disabled:bg-brand-600/50 shadow-xs',
-    secondary: 'bg-ink-900 text-white hover:bg-ink-800',
+    primary: 'bg-hq-navy text-white hover:bg-hq-navy-2 shadow-xs',
+    // myTeam HQ: gold = official federation acts (issue licence, approve transfer). Text always navy.
+    official: 'bg-hq-gold text-hq-navy hover:bg-hq-gold-hover shadow-xs',
+    secondary: 'bg-brand-600 text-white hover:bg-brand-700',
     outline: 'border border-line bg-white text-ink-800 hover:bg-slate-50',
     ghost: 'text-ink-600 hover:bg-slate-100',
     danger: 'border border-red-200 bg-white text-red-700 hover:bg-red-50',
   }
   return (
     <button {...rest} disabled={rest.disabled || loading}
-      className={cn('inline-flex items-center gap-1.5 rounded-md font-medium transition disabled:cursor-not-allowed disabled:opacity-60',
+      className={cn('inline-flex items-center gap-1.5 rounded-[10px] font-semibold transition disabled:cursor-not-allowed disabled:opacity-60',
         size === 'sm' ? 'h-8 px-3 text-xs' : 'h-10 px-4 text-sm', v[variant], className)}>
       {loading && <span className="h-3 w-3 animate-spin rounded-full border-2 border-white/40 border-t-white" />}
       {children}
@@ -26,13 +28,13 @@ export function Button({ variant = 'primary', size = 'md', className, loading, c
 }
 
 export function Input({ className, ...rest }: InputHTMLAttributes<HTMLInputElement>) {
-  return <input {...rest} className={cn('w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm shadow-xs focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-100 disabled:bg-slate-50', className)} />
+  return <input {...rest} className={cn('w-full rounded-md border border-[#8b8ea8] bg-white px-3 py-2 text-sm shadow-xs focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-100 disabled:bg-slate-50', className)} />
 }
 export function Textarea({ className, ...rest }: TextareaHTMLAttributes<HTMLTextAreaElement>) {
-  return <textarea {...rest} className={cn('w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-100', className)} />
+  return <textarea {...rest} className={cn('w-full rounded-md border border-[#8b8ea8] bg-white px-3 py-2 text-sm focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-100', className)} />
 }
 export function Select({ className, children, ...rest }: SelectHTMLAttributes<HTMLSelectElement>) {
-  return <select {...rest} className={cn('w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-100', className)}>{children}</select>
+  return <select {...rest} className={cn('w-full rounded-md border border-[#8b8ea8] bg-white px-3 py-2 text-sm focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-100', className)}>{children}</select>
 }
 export function Field({ label, children, hint, required, className }: { label: ReactNode; children: ReactNode; hint?: ReactNode; required?: boolean; className?: string }) {
   return (
@@ -46,7 +48,7 @@ export function Field({ label, children, hint, required, className }: { label: R
 
 export function Card({ children, className, title, actions }: { children: ReactNode; className?: string; title?: ReactNode; actions?: ReactNode }) {
   return (
-    <section className={cn('rounded-xl border border-line bg-white', className)}>
+    <section className={cn('rounded-2xl border border-line bg-white', className)}>
       {(title || actions) && (
         <header className="flex items-center justify-between border-b border-slate-100 px-4 py-3">
           <h3 className="font-display text-[15px] font-bold text-ink-900">{title}</h3>
@@ -73,7 +75,7 @@ export function PageHeader({ title, subtitle, actions, eyebrow }: { title: React
 
 const tones: Record<string, string> = {
   gray: 'bg-slate-100 text-ink-600', green: 'bg-emerald-50 text-emerald-800', red: 'bg-red-50 text-red-800',
-  amber: 'bg-amber-50 text-amber-800', blue: 'bg-brand-50 text-brand-700', purple: 'bg-violet-50 text-violet-800',
+  amber: 'bg-amber-50 text-amber-800', blue: 'bg-info-bg text-info-ink', purple: 'bg-violet-50 text-violet-800',
 }
 export function Badge({ tone = 'gray', children, className }: { tone?: keyof typeof tones; children: ReactNode; className?: string }) {
   return <span className={cn('inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold whitespace-nowrap', tones[tone], className)}>{children}</span>
@@ -89,10 +91,10 @@ export function Table({ children, className }: { children: ReactNode; className?
   return <div className={cn('overflow-x-auto rounded-xl border border-line bg-white', className)}><table className="w-full text-sm">{children}</table></div>
 }
 export function Th({ children, className, right }: { children?: ReactNode; className?: string; right?: boolean }) {
-  return <th className={cn('bg-[#f7f8fb] px-3 py-2.5 text-left text-[11px] font-semibold uppercase tracking-[0.06em] text-ink-500', right && 'text-right', className)}>{children}</th>
+  return <th className={cn('bg-canvas px-3 py-2.5 text-left text-[11px] font-semibold uppercase tracking-[0.06em] text-ink-500', right && 'text-right', className)}>{children}</th>
 }
 export function Td({ children, className, right, colSpan }: { children?: ReactNode; className?: string; right?: boolean; colSpan?: number }) {
-  return <td colSpan={colSpan} className={cn('border-t border-[#f0f2f7] px-3 py-2.5 align-middle', right && 'text-right tabular-nums', className)}>{children}</td>
+  return <td colSpan={colSpan} className={cn('border-t border-line/70 px-3 py-2.5 align-middle', right && 'text-right tabular-nums', className)}>{children}</td>
 }
 
 export function Empty({ children }: { children?: ReactNode }) {
@@ -150,5 +152,16 @@ export function Stat({ label, value, hint, tone }: { label: ReactNode; value: Re
 
 export function Toast({ msg }: { msg: string | null }) {
   if (!msg) return null
-  return <div className="fixed bottom-4 right-4 z-50 rounded-md bg-slate-900 px-4 py-2 text-sm text-white shadow-lg">{msg}</div>
+  return <div className="fixed bottom-4 right-4 z-50 rounded-[10px] bg-hq-navy px-4 py-2 text-sm text-white shadow-lg">{msg}</div>
+}
+
+/** "Powered by myTeam HQ" — footer mark for public pages and printed licences. */
+export function PoweredBy({ className }: { className?: string }) {
+  const { t } = useTranslation()
+  return (
+    <a href="https://my-team.co" target="_blank" rel="noreferrer" className={cn('inline-flex items-center gap-1.5 text-ink-500 hover:text-ink-800', className)}>
+      <img src="/favicon.svg" alt="" className="h-4 w-4 rounded-[4px]" />
+      <span>{t('public.poweredBy')}</span>
+    </a>
+  )
 }
